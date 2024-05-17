@@ -57,7 +57,7 @@ public func hook(_ stockTarget: UnsafeMutableRawPointer, _ stockReplacement: Uns
 
     print("[*] ellekit: Size of target:", targetSize as Any)
 
-    let branchOffset = (Int(UInt(bitPattern: replacement)) - Int(UInt(bitPattern: target))) / 4
+    let branchOffset = (Int(UInt(bitPattern: replacement)) - Int(UInt(bitPattern: target)))
 
     hooks[target] = replacement
 
@@ -114,7 +114,7 @@ public func hook(_ stockTarget: UnsafeMutableRawPointer, _ stockReplacement: Uns
         print("[*] ellekit: Small branch")
         @InstructionBuilder
         var codeBuilder: [UInt8] {
-            b(branchOffset)
+            b(branchOffset / 4)
         }
         code = codeBuilder
         
